@@ -11,9 +11,15 @@
         <img src="..\logo\logoutp.png" alt="" class="logo">
         <form method="post" action="..\controller\validar.php">
             <h1>Sistema de Login</h1>
-            <p>Email: <input type="text" placeholder="Ingrese su Email" name="email"></p>
-            <p>Comtraseña: <input type="password" placeholder="Ingrese su contraseña" name="pass"></p>
+            <div class="form__group field">
+                <input type="email" class="form__field" placeholder="Ingrese su Email" name="email" id='email' required />
+                <label for="email" class="form__label">Email</label>
+                <input type="password" class="form__field" placeholder="Ingrese su contraseña" name="pass" id='pass' required />
+                <label for="password" class="form__label">Contraseña</label>
+            </div>
+
             <input type="submit" value="Ingresar" class="btnEnviar">
+            <hr>
             <p>No tienes cuaenta? <a href="crearUsuario.php">Crear cuenta</a></p>
         </form>
     </div>
