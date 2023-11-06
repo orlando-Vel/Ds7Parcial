@@ -14,22 +14,31 @@ if (isset($_POST['cerrar_sesion'])) {
     header('Location: http://localhost/Ds7Parcial2/view/login.php');
     exit;
 }
+
+include ('../controller/funciones.php');
+include ('../model/conexion.php'); 
+
+$notes = getNotes($conexion); // Llama a la función para obtener las notas con la conexión PDO
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de inicio</title>
+    <title>Blog de Notas</title>
 </head>
 <body>
-    <div>
-        Hola
-    </div>
-    <form method="post">
-        <button type="submit" name="cerrar_sesion">Cerrar Sesión</button>
-    </form>
+    <h1>Mis Notas</h1>
+
+    <a href="agregarNotas.php">Agregar Nota</a>
+
+    <ul>
+        <?php foreach ($notes as $note) { ?>
+            <li>
+                <?php echo $note['titulo']; ?>
+                <a href="editarNotas.php?id=<?php echo $note['id']; ?>">Editar</a>
+                <a href="../controller/borrarNotas.php?id=<?php echo $note['id']; ?>">Eliminar</a>
+            </li>
+        <?php } ?>
+    </ul>
 </body>
 </html>
-
