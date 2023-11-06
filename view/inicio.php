@@ -40,5 +40,11 @@ $notes = getNotes($conexion); // Llama a la función para obtener las notas con 
             </li>
         <?php } ?>
     </ul>
+
+    <div>
+        <form method="post">
+            <button type="submit" name="cerrar_sesion">Cerrar Sesión</button>
+        </form>
+    </div>
 </body>
 </html>
