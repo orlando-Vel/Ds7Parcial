@@ -13,6 +13,21 @@ function getNotes($conexion, $id_usuario) {
     return $notes;
 }
 
+function getNotesInicio($conexion, $id_usuario) {
+    $sql = "SELECT id_nota, titulo, descripcion, fecha_creacion FROM notas WHERE id_usuario = :id_usuario";
+    $statement = $conexion->prepare($sql);
+    $statement->bindParam(':id_usuario', $id_usuario);
+    $statement->execute();
+
+    $notes = [];
+    if ($statement) {
+        $notes = $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    return $notes;
+}
+
+
+
 function getNoteById($conexion, $id_nota) {
     $sql = "SELECT * FROM notas WHERE id_nota = :id_nota";
     $statement = $conexion->prepare($sql);
@@ -24,13 +39,14 @@ function getNoteById($conexion, $id_nota) {
 }
 
 
-function addNote($conexion, $id_usuario, $titulo, $contenido) {
+function addNote($conexion, $id_usuario, $titulo, $descripcion, $contenido) {
     try {
-        $sql = "INSERT INTO notas (id_usuario, titulo, contenido) VALUES (:id_usuario, :titulo, :contenido)";
+        $sql = "INSERT INTO notas (id_usuario, titulo, contenido, descripcion, fecha_creacion) VALUES (:id_usuario, :titulo, :contenido, :descripcion, CURRENT_TIMESTAMP)";
         $statement = $conexion->prepare($sql);
         $statement->bindParam(':id_usuario', $id_usuario);
-        $statement->bindParam(':titulo', $titulo);
+        $statement->bindParam(':titulo', $titulo); 
         $statement->bindParam(':contenido', $contenido);
+        $statement->bindParam(':descripcion', $descripcion);
         $statement->execute();
     } catch (PDOException $e) {
         echo "Error al guardar la nota: " . $e->getMessage();
@@ -38,11 +54,12 @@ function addNote($conexion, $id_usuario, $titulo, $contenido) {
 }
 
 
-function updateNote($conexion, $id_nota, $titulo, $contenido) {
-    $sql = "UPDATE notas SET titulo = :titulo, contenido = :contenido WHERE id_nota = :id_nota";
+function updateNote($conexion, $id_nota, $titulo, $contenido, $descripcion) {
+    $sql = "UPDATE notas SET titulo = :titulo, contenido = :contenido, descripcion = :descripcion WHERE id_nota = :id_nota";
     $statement = $conexion->prepare($sql);
     $statement->bindParam(':titulo', $titulo);
     $statement->bindParam(':contenido', $contenido);
+    $statement->bindParam(':descripcion', $descripcion);
     $statement->bindParam(':id_nota', $id_nota);
     $statement->execute();
 }

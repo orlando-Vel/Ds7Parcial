@@ -22,7 +22,7 @@ if (isset($_POST['cerrar_sesion'])) {
 include ('..\controller\funciones.php');
 include ('..\model\conexion.php');
 
-$notes = getNotes($conexion, $id_usuario);
+$notes = getNotesInicio($conexion, $id_usuario);
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +38,13 @@ $notes = getNotes($conexion, $id_usuario);
     <ul>
         <?php foreach ($notes as $note) { ?>
             <li>
-                <?php echo $note['titulo']; ?>
-                <a href="editarNotas.php?id=<?php echo $note['id_nota']; ?>">Editar</a>
-                <a href="../controller/borrarNotas.php ?id= <?php echo $note['id_nota']; ?>">Eliminar</a>
+            <strong>Título:</strong> <?php echo $note['titulo']; ?><br>
+            <strong>Descripción:</strong> <?php echo $note['descripcion']; ?><br>
+            <strong>Fecha de creación:</strong> <?php echo $note['fecha_creacion']; ?><br>
+            <a href="editarNotas.php?id=<?php echo $note['id_nota']; ?>">Editar</a>
+            <a href="../controller/borrarNotas.php?id=<?php echo $note['id_nota']; ?>">Eliminar</a>
             </li>
+            <br>
         <?php } ?>
     </ul>
 
@@ -52,4 +55,5 @@ $notes = getNotes($conexion, $id_usuario);
     </div>
 </body>
 </html>
+
 
