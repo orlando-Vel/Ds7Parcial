@@ -7,17 +7,19 @@ if (isset($_POST['registro'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['pass']);
     $usuario = trim($_POST['user']);
+    $rol = trim($_POST['rol']);
 
     //cifra la contraseña
     $passCifrado = password_hash($password, PASSWORD_DEFAULT);
 
     try {
-        $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, email, password, usuario) VALUES (:name, :lastname, :email, :password, :usuario)");
+        $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, apellido, email, password, usuario, rol) VALUES (:name, :lastname, :email, :password, :usuario, :rol)");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':lastname', $lastname);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $passCifrado);
         $stmt->bindParam(':usuario', $usuario);
+        $stmt->bindParam(':rol', $rol);
         $stmt->execute();
         
         echo "Tu registro se ha completado";

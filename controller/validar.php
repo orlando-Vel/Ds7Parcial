@@ -23,8 +23,18 @@ try {
     if ($fila && password_verify($contrasena, $fila['password'])) {
         $_SESSION['email'] = $email;
         $_SESSION['id'] = $fila['id'];
-        header('Location: http://localhost/Ds7Parcial2/view/inicio.php');
-        exit;
+
+        // Obtener el rol
+        $rol = $fila['rol'];
+
+        // Verificar el rol y redirigir según el rol
+        if ($rol === 'administrador') {
+            header('Location: http://localhost/Ds7Parcial2/view/inicioAdmin.php');
+            exit;
+        } else {
+            header('Location: http://localhost/Ds7Parcial2/view/inicio.php');
+            exit;
+        }
     } else {
         echo '<script>
             alert("Credenciales incorrectas.");

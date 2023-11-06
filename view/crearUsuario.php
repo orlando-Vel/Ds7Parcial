@@ -20,6 +20,11 @@
             <input type="email" placeholder="Ingrese su Email" name="email" required>
             <p>Contraseña</p>
             <input type="password" placeholder="Ingrese su Contraseña" name="pass" required>
+            <p>Rol</p>
+            <select name="rol" required>
+                <option value="usuario">Usuario</option>
+                <option value="administrador">Administrador</option>
+            </select>
             <input type="submit" value="Enviar" class="btnEnviar" name="registro">
             <p>Tienes una cuenta?<a href="login.php">Login</a></p>
         </form>

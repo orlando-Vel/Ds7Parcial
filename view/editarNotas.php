@@ -2,20 +2,28 @@
 include('../model/conexion.php');
 include('../controller/funciones.php');
 
-$note = null;
+if (isset($_GET['id'])) {
+    $id_nota = $_GET['id'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
-    $note = getNoteById($conexion, $_GET['id']); // Función para obtener una nota por su ID
-}
+    $nota = getNoteById($conexion, $id_nota);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+    if ($nota) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['titulo']) && isset($_POST['contenido'])) {
+                $nuevo_titulo = $_POST['titulo'];
+                $nuevo_contenido = $_POST['contenido'];
 
-    updateNote($conexion, $id, $title, $content); // Función para actualizar una nota
+                updateNote($conexion, $id_nota, $nuevo_titulo, $nuevo_contenido);
 
-    header("Location: http://localhost/Ds7Parcial2/view/inicio.php");
+                header("Location: http://localhost/Ds7Parcial2/view/inicio.php");
+                exit;
+            }
+        }
+    } else {
+        echo "Nota no encontrada.";
+    }
+} else {
+    echo "ID de nota no proporcionado.";
 }
 ?>
 
@@ -25,13 +33,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Editar Nota</title>
 </head>
 <body>
-    <h1>Editar Nota</h1>
 
-    <form method="post" action="">
-        <input type="hidden" name="id" value="<?php echo $note['id']; ?>">
-        Título: <input type="text" name="title" value="<?php echo $note['titulo']; ?>"><br>
-        Contenido: <textarea name="content"><?php echo $note['contenido']; ?></textarea><br>
-        <input type="submit" value="Actualizar Nota">
+<?php if ($nota) : ?>
+    <h2>Editar Nota</h2>
+    <form method="post">
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" value="<?php echo $nota['titulo']; ?>"><br><br>
+
+        <label for="contenido">Contenido:</label><br>
+        <textarea id="contenido" name="contenido"><?php echo $nota['contenido']; ?></textarea><br><br>
+
+        <input type="submit" value="Guardar Cambios">
     </form>
+<?php endif; ?>
+
 </body>
 </html>

@@ -7,6 +7,10 @@ if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
     exit;
 }
 
+
+$id_usuario = $_SESSION['id'];
+
+
 // Cerrar la sesión
 if (isset($_POST['cerrar_sesion'])) {
     session_unset();
@@ -15,10 +19,10 @@ if (isset($_POST['cerrar_sesion'])) {
     exit;
 }
 
-include ('../controller/funciones.php');
-include ('../model/conexion.php'); 
+include ('..\controller\funciones.php');
+include ('..\model\conexion.php');
 
-$notes = getNotes($conexion); // Llama a la función para obtener las notas con la conexión PDO
+$notes = getNotes($conexion, $id_usuario);
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +39,8 @@ $notes = getNotes($conexion); // Llama a la función para obtener las notas con 
         <?php foreach ($notes as $note) { ?>
             <li>
                 <?php echo $note['titulo']; ?>
-                <a href="editarNotas.php?id=<?php echo $note['id']; ?>">Editar</a>
-                <a href="../controller/borrarNotas.php?id=<?php echo $note['id']; ?>">Eliminar</a>
+                <a href="editarNotas.php?id=<?php echo $note['id_nota']; ?>">Editar</a>
+                <a href="../controller/borrarNotas.php ?id= <?php echo $note['id_nota']; ?>">Eliminar</a>
             </li>
         <?php } ?>
     </ul>
@@ -48,3 +52,4 @@ $notes = getNotes($conexion); // Llama a la función para obtener las notas con 
     </div>
 </body>
 </html>
+

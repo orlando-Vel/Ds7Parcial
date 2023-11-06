@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Verificar si la sesión está iniciada
+if (!isset($_SESSION['email']) || empty($_SESSION['email'])) {
+    header('Location: http://localhost/Ds7Parcial2/view/login.php');
+    exit;
+}
+
 include('../model/conexion.php');
 include('../controller/funciones.php');
 
@@ -6,7 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $content = $_POST['content'];
 
-    addNote($conexion, $title, $content); // Función para agregar nota a la base de datos
+    $userId = $_SESSION['id'];
+
+    addNote($conexion, $userId, $title, $content); // Solo pasamos el ID de usuario, título y contenido
 
     header("Location: http://localhost/Ds7Parcial2/view/inicio.php");
 }
