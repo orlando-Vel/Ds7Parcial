@@ -32,23 +32,50 @@ if (isset($_GET['id'])) {
 <html>
 <head>
     <title>Editar Nota</title>
+    <link rel="stylesheet" href="..\style\Notas.css">
+    <link rel="stylesheet" href="..\style\login.css">
 </head>
 <body>
 
 <?php if ($nota) : ?>
-    <h2>Editar Nota</h2>
-    <form method="post">
-        <label for="titulo">Título:</label><br>
-        <input type="text" id="titulo" name="titulo" value="<?php echo $nota['titulo']; ?>"><br><br>
+    <section class="title" >
+        <h1>Editar Nota</h1>
+    </section>
 
-        <label for="descripcion">Descripción:</label><br>
-        <textarea id="descripcion" name="descripcion"><?php echo $nota['descripcion']; ?></textarea><br><br>
+    <section class="block" >
+        <form id="form_size" method="post">
+            <div class="form__group field">
+                <input type="text" class="form__field" placeholder="Título" name="titulo" id='titulo' value="<?php echo $nota['titulo']; ?>"/>
+                <label for="titulo" class="form__label">Título</label>
+            </div>
 
-        <label for="contenido">Contenido:</label><br>
-        <textarea id="contenido" name="contenido"><?php echo $nota['contenido']; ?></textarea><br><br>
+            <div class="form__group field">
+                <textarea class="form__field" placeholder="Descripción" name="descripcion" id='descripcion'><?php echo $nota['descripcion']; ?></textarea>
+                <label for="descripcion" class="form__label">Descripción</label>
+            </div>
 
-        <input type="submit" value="Guardar Cambios">
-    </form>
+            <div class="form__group field">
+                <textarea class="form__field" placeholder="Contenido" name="contenido" id='contenido'><?php echo $nota['contenido']; ?></textarea>
+                <label for="contenido" class="form__label">Contenido</label>
+            </div>
+
+            <!--
+            <label for="titulo">Título:</label><br>
+            <input type="text" id="titulo" name="titulo" value="<?php echo $nota['titulo']; ?>"><br><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion"><?php echo $nota['descripcion']; ?></textarea><br><br>
+
+            <label for="contenido">Contenido:</label><br>
+            <textarea id="contenido" name="contenido"><?php echo $nota['contenido']; ?></textarea><br><br> -->
+
+            <div class="foot_page">
+                <form class="form_foot">
+                    <button class="exit" type="submit" value="Guardar Cambios">Guardar Cambios</button>
+                </form>
+            </div>
+        </form>
+    </section>
 <?php endif; ?>
 
 </body>

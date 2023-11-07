@@ -29,30 +29,37 @@ $notes = getNotesInicio($conexion, $id_usuario);
 <html>
 <head>
     <title>Blog de Notas</title>
+    <link rel="stylesheet" href="..\style\Notas.css">
 </head>
 <body>
-    <h1>Mis Notas</h1>
+    <section class="title" >
+        <h1>Mis Notas</h1>
+    </section>
 
-    <a href="agregarNotas.php">Agregar Nota</a>
+    <section class="block" >
+        <button class="new" >
+            <a href="agregarNotas.php">Agregar Nota</a>
+        </button>
 
-    <ul>
-        <?php foreach ($notes as $note) { ?>
-            <li>
-            <strong>Título:</strong> <?php echo $note['titulo']; ?><br>
-            <strong>Descripción:</strong> <?php echo $note['descripcion']; ?><br>
-            <strong>Fecha de creación:</strong> <?php echo $note['fecha_creacion']; ?><br>
-            <a href="editarNotas.php?id=<?php echo $note['id_nota']; ?>">Editar</a>
-            <a href="../controller/borrarNotas.php?id=<?php echo $note['id_nota']; ?>">Eliminar</a>
-            </li>
-            <br>
-        <?php } ?>
-    </ul>
+        <ul>
+            <?php foreach ($notes as $note) { ?>
+                <li>
+                    <strong style="font-size: 25px;" >Título:</strong> <?php echo $note['titulo']; ?><br>
+                    <strong>Descripción:</strong> <?php echo $note['descripcion']; ?><br>
+                    <strong>Fecha de creación:</strong> <?php echo $note['fecha_creacion']; ?><br>
+                    <button id="btn_edit"><a href="editarNotas.php?id=<?php echo $note['id_nota']; ?>">Editar</a></button>
+                    <button id="btn_delete"><a href="../controller/borrarNotas.php?id=<?php echo $note['id_nota']; ?>">Eliminar</a></button>
+                </li>
+                <br>
+            <?php } ?>
+        </ul>
 
-    <div>
-        <form method="post">
-            <button type="submit" name="cerrar_sesion">Cerrar Sesión</button>
-        </form>
-    </div>
+        <div class="foot_page">
+            <form class="form_foot" method="post">
+                <button class="exit" type="submit" name="cerrar_sesion">Cerrar Sesión</button>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
 

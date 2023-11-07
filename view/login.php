@@ -12,15 +12,16 @@
         <form method="post" action="..\controller\validar.php">
             <h1>Sistema de Login</h1>
             <div class="form__group field">
-                <input type="email" class="form__field" placeholder="Ingrese su Email" name="email" id='email' required />
+                <input type="email" class="form__field" placeholder="Email" name="email" id='email' required />
                 <label for="email" class="form__label">Email</label>
-                <input type="password" class="form__field" placeholder="Ingrese su contraseña" name="pass" id='pass' required />
-                <label for="password" class="form__label">Contraseña</label>
             </div>
-
+            <div class="form__group field">
+                <input type="password" class="form__field" placeholder="Contraseña" name="pass" id='pass' required />
+                <label for="pass" class="form__label">Contraseña</label>
+            </div>
+            <br>
             <input type="submit" value="Ingresar" class="btnEnviar">
-            <hr>
-            <p>No tienes cuaenta? <a href="crearUsuario.php">Crear cuenta</a></p>
+            <p>No tienes cuenta? <a href="crearUsuario.php"><strong>Crear cuenta</strong></a></p>
         </form>
     </div>
 </body>

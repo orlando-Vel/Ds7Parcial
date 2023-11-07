@@ -1,61 +1,197 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+:root {
+  --primary: #11998e;
+  --secondary: #38ef7d;
+  --white: #fff;
+  --gray: #9b9b9b;
+  --black-transparent: #000000b6;
+  --black: #000000;
 }
 
-  
-h1 {
-    text-align: center;
-    color: #333;
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
 }
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid var(--gray);
+  outline: 0;
+  font-size: 1rem;
+  color: var(--white);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1rem;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: .7rem;
+  color: var(--gray);
+}
+
+.form__field:focus ~ .form__label,
+.form__field:valid ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: .7rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, var(--primary), var(--secondary));
+  border-image-slice: 1;
+}
+
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1rem;
+  background-image: url('../img/dark-2597916_1280.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+  
 
 .div-formulario {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    width: 300px;
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h1{
+    font-size: 20px;
     text-align: center;
 }
 
-
 form {
-    font-size: 14px;
-    margin: 2px;
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.99);
+  padding: 25px 35px;
+  border-radius: 25px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+form h1 {
+  color: var(--primary);
+}
+
+input {
+  padding: 5px 0 5px 0;
+  margin: 10px 0 10px 0;
 }
   
 p {
     margin-top: 10px;
     margin-bottom: 5px;
 }
-  
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+/* ===== Select Box ===== */
+select {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  -ms-appearance:none;
+  appearance:none;
+  box-shadow:none;
+  border:0;
+  border-bottom: 3px solid var(--primary);
+  outline: 0;
+  font-size: 1rem;
+  color: var(--gray);
+  padding: 7px 0;
+  background: transparent;
+  background-image: none;
+  flex: 1;
+  cursor:pointer;
 }
-  
+select::-ms-expand {
+  display: none;
+}
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  margin-bottom: 20px;
+  line-height: 3;
+  background: transparent;
+  overflow: hidden;
+  border-radius: .25em;
+}
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: transparent;
+  cursor:pointer;
+  pointer-events:none;
+  transition:.25s all ease;
+}
+.select:hover::after {
+  color: var(--primary);
+}
+
+/*=== Boton Enviar ===*/
+
 .btnEnviar{
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 5px;
-    cursor: pointer;
-    font-weight: bold;
+  width: 100%;
+  background: linear-gradient(to right, var(--primary)0%, var(--secondary)100%);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 20px;
+  font-size: 14px;
 }
-  
+
 .btnEnviar:hover {
-    background-color: #0056b3;
+  background: linear-gradient(to left, var(--primary)100%, var(--secondary)0%);
+}
+
+a {
+  text-decoration: none;
+  color: var(--secondary);
 }
